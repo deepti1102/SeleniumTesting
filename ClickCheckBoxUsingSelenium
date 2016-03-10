@@ -1,0 +1,44 @@
+package bankRateForCheckBox;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Checkbox {
+	public static void main (String[]args){
+		WebDriver driver=new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("http://app.bankrate.com/prefcenter/signup.cfm?t=newsletter");
+		
+		
+		try{
+	WebElement CheckBox1=driver.findElement(By.xpath("//input[@name='named_optin'][@value='mortgage_news']"));
+	boolean Status=CheckBox1.isDisplayed();
+	System.out.println("The checkbox is displayed:"+Status);
+	boolean Enabled_Status=CheckBox1.isEnabled();
+			System.out.println( "The checkbox is enabled:"+Enabled_Status);
+			boolean Checked_Status=CheckBox1.isSelected();
+			System.out.println("The checkbox is selected:"+Checked_Status);	
+			CheckBox1.click();
+			System.out.println("Checked the checkbox...yay!!!!"+Status);
+			
+		}catch(Exception e)
+		{
+			System.out.println("The exception is: "+e);
+			
+		}
+	try{
+	Thread.sleep(5000);
+	System.out.println("I slept for 5 seconds");
+	}catch(Exception ex)
+	{
+		System.out.println(ex);
+		driver.close();
+		System.out.println("I am inside the try catch");
+	}
+	driver.quit();
+	System.out.println("I will close all the open browsers");
+}
+}
