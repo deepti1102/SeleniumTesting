@@ -1,0 +1,44 @@
+package inValidFaceBookLogin;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class InValidLogin {
+
+	public static void main(String[] args) throws Exception {
+		WebDriver driver = new FirefoxDriver();
+		
+		driver.get("http://www.facebook.com");
+		driver.manage().window().maximize();
+		
+		WebElement username = driver.findElement(By.id("email"));
+		username.sendKeys("myname@email.com");
+		
+		WebElement Password = driver.findElement(By.id("pass"));
+		Password.sendKeys("pass1234");
+		
+		WebElement Login = driver.findElement(By.id("loginbutton"));
+		Login.click();
+		
+		WebElement Expected_errormessage = driver.findElement(By
+				.className("_1tp8"));
+		System.out.println(Expected_errormessage.getText());
+
+		String Actual_errormessage = "The password you’ve entered is incorrect. Forgot Password?";
+
+		Thread.sleep(2000);
+		
+		assertEquals(Actual_errormessage, Expected_errormessage);
+
+		driver.close();
+	}
+
+	private static void assertEquals(String actual_errormessage,
+			WebElement expected_errormessage) {
+
+	}
+
+}
